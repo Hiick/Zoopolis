@@ -1,0 +1,179 @@
+/* Base */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Squada+One);
+body {
+  line-height: 1.7;
+  color: gray;
+  font-weight: 300;
+  font-size: 1.1rem;overflow: hidden;
+}
+
+.glowing {
+    animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+    0% { background-color: #272b37; box-shadow: 0 0 3px #272b37; }
+    50% { background-color: #737885; box-shadow: 0 0 40px #737885; }
+    100% { background-color: #272b37; box-shadow: 0 0 3px #272b37; }
+}
+
+::-moz-selection {
+  background: #000;
+  color: #fff; }
+
+::selection {
+  background: #000;
+  color: #fff; }
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a:hover {
+    text-decoration: none; }
+
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+  font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+.border-2 {
+  border-width: 2px; }
+
+.text-black {
+  color: #000 !important; }
+
+.bg-black {
+  background: #000 !important; }
+
+.color-black-opacity-5 {
+  color: rgba(0, 0, 0, 0.5); }
+
+.color-white-opacity-5 {
+  color: rgba(255, 255, 255, 0.5); }
+
+.btn {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 14px 30px; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+  .btn.btn-black {
+    border-width: 2px;
+    border-color: #000;
+    background: #000;
+    color: #fff; }
+    .btn.btn-black:hover {
+      color: #000;
+      background-color: transparent; }
+    .btn.btn-black.btn-outline-black {
+      color: #000;
+      background-color: transparent; }
+      .btn.btn-black.btn-outline-black:hover {
+        border-color: #000;
+        background: #000;
+        color: #fff; }
+  .btn.btn-white {
+    border-width: 2px;
+    border-color: #fff;
+    background: #fff;
+    color: #000; }
+    .btn.btn-white:hover {
+      color: #fff;
+      background-color: transparent; }
+    .btn.btn-white.btn-outline-white {
+      color: #fff;
+      background-color: transparent; }
+      .btn.btn-white.btn-outline-white:hover {
+        border-color: #fff;
+        background: #fff;
+        color: #000; }
+  .btn.btn-pill {
+    border-radius: 30px; }
+
+/* Blocks */
+.intro-section {
+  position: relative; }
+  .intro-section, .intro-section .container > .row {
+    height: 100vh;
+    min-height: 900px; }
+  .intro-section.single-cover, .intro-section.single-cover .container > .row {
+    height: 50vh;
+    min-height: 400px; }
+  .intro-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem; }
+  .intro-section p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.1rem; }
+
+
+.slide-1 {
+  background-size: cover;
+  background-position: center; }
+  .slide-1:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('https://cdn.shopify.com/s/files/1/2006/1615/t/2/assets/confetti.svg?12731447821119762224');
+    background-size: 783px 585px;
+  }
+    @media (max-width: 991.98px) {
+      .slide-1:before {
+        width: 100%; } }
+  .slide-1 .slide-text {
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 50px;
+    -webkit-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out; }
+    .slide-1 .slide-text.active {
+      opacity: 1;
+      visibility: visible;
+      margin-top: 0px; }
+
+.form-box {
+  padding: 40px;
+  background: #fff;
+  border-radius: 7px; }
+
+.section-1 {
+  margin-top: 10rem; }
+
+#logo {
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 150px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    text-shadow: #EDEDED 3px 2px 0;
+    position: relative;
+}
+#logo:after {
+    content:"Zoopolis";
+    position: absolute;
+    left: 8px;
+    top: 32px;
+}
+#logo:after {
+    background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, #555 25%, #555 50%, transparent 50%, transparent 75%, #555 75%);
+    background-size: 4px 4px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -5;
+    display: block;
+    text-shadow: none;
+}
