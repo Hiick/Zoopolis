@@ -1,0 +1,6 @@
+# Zoopolis
+
+### Installation
+````
+composer install
+````
