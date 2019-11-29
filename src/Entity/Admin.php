@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Admin
  *
  * @ORM\Table(name="admin")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LandingPageRepository")
  */
 class Admin
 {
@@ -47,7 +47,7 @@ class Admin
      *
      * @ORM\Column(name="fisrtname", type="string", length=45, nullable=false)
      */
-    private $fisrtname;
+    private $firstname;
 
     /**
      * @var string
@@ -97,14 +97,14 @@ class Admin
         return $this;
     }
 
-    public function getFisrtname(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->fisrtname;
+        return $this->firstname;
     }
 
-    public function setFisrtname(string $fisrtname): self
+    public function setFirstname(string $firstname): self
     {
-        $this->fisrtname = $fisrtname;
+        $this->firstname = $firstname;
 
         return $this;
     }
@@ -119,6 +119,18 @@ class Admin
         $this->lastname = $lastname;
 
         return $this;
+    }
+
+    public static function getAllAdmins(array $admins) {
+        $retour = [];
+        foreach ($admins as $admin)
+            array_push($retour, [
+                "email" => $admin->getEmail(),
+                "role" => $admin->getRole(),
+                "firstname" => $admin->getFirstname(),
+                "lastname" => $admin->getLastname()
+            ]);
+        return $retour;
     }
 
 
