@@ -2,5 +2,6 @@
 
 ### Installation
 ````
+cd folder/
 composer install
 ````
