@@ -9,4 +9,4 @@ createAdmin:
 
 login:
     path: /login
-    controller: App\Controller\LandingPageController::login
+    controller: App\Controller\LoginController::login
