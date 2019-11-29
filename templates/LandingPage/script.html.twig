@@ -26,16 +26,18 @@
             data: JSON.stringify({
                 "email": "admin@zoopolis.com",
                 "role": "Admin",
-                "firstname": "Alexandre",
-                "lastname": "Mignon",
-                "password": "couille"
+                "firstname": "Administrateur",
+                "lastname": "Administrateur",
+                "password": "Zoopolis2019"
             }),
             async: true,
             success: function () {
                 console.log('Administrateur ajouté avec succès !');
                 window.location.href = '/login'
+            },
+            error: function (error) {
+                console.log('Erreur lors de l\'ajout : ' + error);
             }
         });
-
     });
 </script>
