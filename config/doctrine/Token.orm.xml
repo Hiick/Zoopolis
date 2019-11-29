@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Token" table="token">
+    <indexes>
+      <index name="fk_token_user_idx" columns="user_iduser"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="idtoken_UNIQUE" columns="idtoken"/>
+    </unique-constraints>
+    <id name="idtoken" type="string" column="idtoken" length="80">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="string" column="type" length="0" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">Bearer</option>
+      </options>
+    </field>
+    <field name="decive" type="string" column="decive" length="0" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">Destop</option>
+      </options>
+    </field>
+    <field name="lat" type="string" column="lat" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lon" type="string" column="lon" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="createdat" type="datetime" column="createdAt" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <many-to-one field="userIduser" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="user_iduser" referenced-column-name="iduser"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

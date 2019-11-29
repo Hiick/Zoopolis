@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Pet" table="pet">
+    <indexes>
+      <index name="fk_pet_user1_idx" columns="user_iduser"/>
+    </indexes>
+    <id name="idpet" type="integer" column="idpet">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">Rex</option>
+      </options>
+    </field>
+    <field name="type" type="string" column="type" length="60" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">Chien</option>
+      </options>
+    </field>
+    <field name="race" type="string" column="race" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="birthday" type="date" column="birthday" nullable="false"/>
+    <field name="sexe" type="string" column="sexe" length="0" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">Homme</option>
+      </options>
+    </field>
+    <field name="dateacquisition" type="date" column="dateAcquisition" nullable="false"/>
+    <field name="createdat" type="datetime" column="createdAt" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <field name="updatedat" type="datetime" column="updatedAt" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <many-to-one field="userIduser" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="user_iduser" referenced-column-name="iduser"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Billing" table="billing">
+    <indexes>
+      <index name="fk_billing_user1_idx" columns="user_iduser"/>
+    </indexes>
+    <id name="idbilling" type="integer" column="idbilling">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="datebilling" type="date" column="dateBilling" nullable="false"/>
+    <field name="amount" type="decimal" column="amount" precision="16" scale="3" nullable="false"/>
+    <field name="createdat" type="datetime" column="createdAt" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <many-to-one field="userIduser" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="user_iduser" referenced-column-name="iduser"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
