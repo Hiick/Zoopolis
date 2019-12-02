@@ -7,6 +7,16 @@ createAdmin:
     methods: POST
     controller: App\Controller\LandingPageController::createAdmin
 
-login:
+loginPage:
     path: /login
-    controller: App\Controller\LoginController::login
+    methods: GET
+    controller: App\Controller\LoginController::start
+
+home:
+    path: /admin/dashboard
+    methods: GET
+    controller: App\Controller\DashboardController::start
+
+logout:
+    path: /logout
+

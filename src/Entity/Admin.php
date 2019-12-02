@@ -3,14 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Admin
  *
  * @ORM\Table(name="admin")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AdminRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Email already exist"
+ * )
  */
-class Admin
+class Admin implements UserInterface
 {
     /**
      * @var int
@@ -25,6 +32,7 @@ class Admin
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=155, nullable=false)
+     * @Assert\Email()
      */
     private $email;
 
@@ -56,6 +64,7 @@ class Admin
      */
     private $lastname;
 
+
     public function getIdadmin(): ?int
     {
         return $this->idadmin;
@@ -76,6 +85,15 @@ class Admin
     public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    public function eraseCredentials() {}
+    public function getSalt() {}
+    public function getRoles() {
+        return ["ROLE_ADMIN"];
+    }
+    public function getUsername() {
+        return $this->getEmail();
     }
 
     public function setPassword(string $password): self
@@ -129,6 +147,16 @@ class Admin
                 "role" => $admin->getRole(),
                 "firstname" => $admin->getFirstname(),
                 "lastname" => $admin->getLastname()
+            ]);
+        return $retour;
+    }
+
+    public static function login(array $admins) {
+        $retour = [];
+        foreach ($admins as $admin)
+            array_push($retour, [
+                "email" => $admin->getEmail(),
+                "password" => $admin->getPassword()
             ]);
         return $retour;
     }
