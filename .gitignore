@@ -6,8 +6,12 @@
 /public/bundles/
 /var/
 /vendor/
+mike
 .env
 .env.test
+.idea/workspace.xml
+.env/
+.env.test/
 
 ###< symfony/framework-bundle ###
 
