@@ -6,6 +6,7 @@ use App\Entity\Admin;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Controller\BaseController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class LandingPageController extends BaseController {
 
@@ -13,7 +14,7 @@ class LandingPageController extends BaseController {
         return $this->render('LandingPage/base.html.twig');
     }
 
-    public function createAdmin(Request $request): Response {
+    public function createAdmin(Request $request, UserPasswordEncoderInterface $encoder): Response {
         $content = $request->getContent();
 
         if (!empty($content)) {
@@ -24,7 +25,8 @@ class LandingPageController extends BaseController {
             $admin->setLastname($params['lastname']);
             $admin->setEmail($params['email']);
             $admin->setRole($params['role']);
-            $admin->setPassword($params['password']);
+            $hash = $encoder->encodePassword($admin, $params['password']);
+            $admin->setPassword($hash);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($admin);

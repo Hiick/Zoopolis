@@ -1,0 +1,16 @@
+<h1>DASHBOARD</h1>
+<button id="logout" href="{{ path('logout') }}">Déconnexion</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    $("#logout").click(function(){
+        $.ajax({
+            url : '/logout',
+            success: function () {
+                console.log('Déconnecté avec succès !');
+                window.location.href = '/login'
+            }
+        });
+    });
+</script>
