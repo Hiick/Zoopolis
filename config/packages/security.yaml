@@ -1,13 +1,13 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        App\Entity\Admin:
+        App\Entity\Main\Admin:
             algorithm: bcrypt
     providers:
         in_memory: { memory: null }
         in_database:
             entity:
-                class: App\Entity\Admin
+                class: App\Entity\Main\Admin
                 property: email
     firewalls:
         dev:

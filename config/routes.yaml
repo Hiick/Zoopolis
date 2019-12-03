@@ -22,6 +22,21 @@ users:
     methods: GET
     controller: App\Controller\UsersController::start
 
+getMens:
+    path: /users/men
+    methods: GET
+    controller: App\Controller\UsersController::getMens
+
+getWomens:
+    path: /users/women
+    methods: GET
+    controller: App\Controller\UsersController::getWomens
+
+getAllUsers:
+    path: /users/all
+    methods: GET
+    controller: App\Controller\UsersController::getAllUsers
+
 logout:
     path: /logout
 
