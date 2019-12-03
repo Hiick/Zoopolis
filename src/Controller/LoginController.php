@@ -6,6 +6,7 @@ namespace App\Controller;
 //use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Main\Admin;
+use Couchbase\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,11 @@ class LoginController extends BaseController {
     }
 
     /**
+     * @return RedirectResponse
      * @Route("/connexion", name="security_login")
      */
     public function login() {
-        die('Une erreur est parvenu. Dommage !');
+        return $this->redirect('/admin/dashboard');
     }
 
 }
