@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Admin;
+use App\Entity\Main\Admin;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Controller\BaseController;
@@ -14,7 +15,7 @@ class LandingPageController extends BaseController {
         return $this->render('LandingPage/base.html.twig');
     }
 
-    public function createAdmin(Request $request, UserPasswordEncoderInterface $encoder): Response {
+    public function createAdmin(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $em): Response {
         $content = $request->getContent();
 
         if (!empty($content)) {
@@ -28,7 +29,7 @@ class LandingPageController extends BaseController {
             $hash = $encoder->encodePassword($admin, $params['password']);
             $admin->setPassword($hash);
 
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager('default');
             $em->persist($admin);
             $em->flush();
         }

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Admin;
+use App\Entity\Main\Admin;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
