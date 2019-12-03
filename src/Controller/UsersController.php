@@ -42,4 +42,12 @@ class UsersController extends BaseController {
         ]);
     }
 
+    public function getAllActiveUsers(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->getAllActiveUsers();
+        return $this->responseApi([
+            $listUsers[0][1],
+        ]);
+    }
+
 }

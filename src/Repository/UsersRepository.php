@@ -36,4 +36,17 @@ class UsersRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getAllActiveUsers()
+    {
+        $datetime = new \DateTime("now");
+
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->where('u.active = 1')
+            ->andWhere('u.createdat <= :now')
+            ->setParameter('now', $datetime->format('Y-m-d'))
+            ->getQuery()
+            ->getResult();
+    }
 }

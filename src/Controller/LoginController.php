@@ -19,11 +19,10 @@ class LoginController extends BaseController {
     }
 
     /**
-     * @return RedirectResponse
      * @Route("/connexion", name="security_login")
      */
     public function login() {
-        return $this->redirect('/admin/dashboard');
+        die('Une erreur est parvenu. Dommage !');
     }
 
 }
