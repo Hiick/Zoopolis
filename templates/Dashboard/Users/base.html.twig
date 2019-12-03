@@ -58,11 +58,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nombre total d'inscrits</div>
-                                            <div id="all" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nombre d'utilisateurs actifs aujourd'hui</div>
+                                            <div id="all-active" class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-restroom fa-2x text-gray-300"></i>
+                                            <i class="fas fa-check fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -88,6 +88,7 @@
 
     </div>
     </body>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -108,11 +109,11 @@
                 }
             });
             $.ajax({
-                url : '/users/all',
+                url : '/users/active/all',
                 type: 'GET',
                 async: true,
                 success: function (data) {
-                    $('#all').html(data)
+                    $('#all-active').html(data)
                 }
             });
         });
