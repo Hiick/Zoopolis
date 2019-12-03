@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DashboardController extends BaseController {
+class UsersController extends BaseController {
 
     /**
-     * @Route("/admin/dashboard", name="dashboard")
+     * @Route("/admin/users", name="users")
      */
     public function start(): Response {
-        return $this->render('Dashboard/base.html.twig');
+        return $this->render('Dashboard/Users/base.html.twig');
     }
 
 }

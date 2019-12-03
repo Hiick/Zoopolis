@@ -17,6 +17,11 @@ home:
     methods: GET
     controller: App\Controller\DashboardController::start
 
+users:
+    path: /admin/users
+    methods: GET
+    controller: App\Controller\UsersController::start
+
 logout:
     path: /logout
 
