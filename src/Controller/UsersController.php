@@ -63,4 +63,37 @@ class UsersController extends BaseController {
         return $this->responseApi($list_final);
     }
 
+    public function listUsers(EntityManagerInterface $entityManager, Request $request): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+
+        $content = $request->getContent();
+
+        $params = json_decode($content, true);
+        $record_per_page = 10;
+        $page=$params["page"];
+        $start_from = ($page - 1)*$record_per_page;
+        $listUsers = $entityManager->getRepository(User::class)->listUsers($start_from, $record_per_page);
+
+        return $this->responseApi($listUsers);
+
+    }
+
+    public function countListUsers(EntityManagerInterface $entityManager, Request $request): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->countListUsers();
+        return $this->responseApi($listUsers);
+    }
+
+    public function deleteUser(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->countListUsers();
+        return $this->responseApi($listUsers);
+    }
+
+    public function getId(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->getId();
+        return $this->responseApi($listUsers);
+    }
+
 }

@@ -57,6 +57,26 @@ getByEmail:
     methods: GET
     controller: App\Controller\DashboardController::getByEmail
 
+getListUsers:
+    path: /users/list
+    methods: POST
+    controller: App\Controller\UsersController::listUsers
+
+getCountListUsers:
+    path: /users/countlist
+    methods: GET
+    controller: App\Controller\UsersController::countListUsers
+
+getId:
+    path: /user/id
+    methods: GET
+    controller: App\Controller\UsersController::getId
+
+deleteUser:
+    path: /user/delete
+    methods: post
+    controller: App\Controller\UsersController::deleteUser
+
 logout:
     path: /logout
 

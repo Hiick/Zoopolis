@@ -52,10 +52,10 @@ class UsersRepository extends ServiceEntityRepository
     }
 
     public function getByAges() {
-        $entityManager = $this->getEntityManager();
-        $conn = $entityManager->getConnection();
+    $entityManager = $this->getEntityManager();
+    $conn = $entityManager->getConnection();
 
-        $sql = '
+    $sql = '
         SELECT COUNT(*)
                 FROM user
                 WHERE FLOOR(datediff(now(), user.birthday )) > (18*365.25)
@@ -80,6 +80,7 @@ class UsersRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $stmt->execute(array('Values'));
         return $stmt->fetchAll();
+
     }
 
     public function getByEmail() {
@@ -98,6 +99,55 @@ class UsersRepository extends ServiceEntityRepository
 
         $stmt = $conn->prepare($sql);
         $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
+
+    public function listUsers($start, $end) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        SELECT *
+        FROM user
+        ORDER BY iduser ASC
+        LIMIT '.$start.', '.$end;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function countListUsers($nb = 10) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = 'SELECT ROUND(COUNT(*)/'.$nb.') as pagination FROM user';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function deleteUser($id) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = 'DELETE FROM `user`
+        WHERE id='. $id .' ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getId() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = 'SELECT iduser from user';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 }

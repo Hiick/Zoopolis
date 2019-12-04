@@ -21,12 +21,15 @@ class DashboardController extends BaseController {
     public function getByEmail(EntityManagerInterface $entityManager): Response {
         $entityManager = $this->getDoctrine()->getManager('customer');
         $listUsers = $entityManager->getRepository(User::class)->getByEmail();
+
         $listDomain = [];
         $listDatas = [];
+
         for ($i = 0; $i < count($listUsers); $i ++) {
             array_push($listDomain, $listUsers[$i]["domaine"]);
             array_push($listDatas, $listUsers[$i]["nb_domaine"]);
         }
+
         return $this->responseApi([
             "Labels" => $listDomain,
             "Datas" => $listDatas
