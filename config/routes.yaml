@@ -42,6 +42,16 @@ getAllActiveUsers:
     methods: GET
     controller: App\Controller\UsersController::getAllActiveUsers
 
+getSumUsersSub:
+    path: /users/sub
+    methods: GET
+    controller: App\Controller\BillingController::getSumUsersSub
+
+getByAges:
+    path: /users/ages
+    methods: GET
+    controller: App\Controller\UsersController::getByAges
+
 logout:
     path: /logout
 

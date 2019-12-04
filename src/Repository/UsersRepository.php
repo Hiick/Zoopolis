@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Secondary\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,5 +49,36 @@ class UsersRepository extends ServiceEntityRepository
             ->setParameter('now', $datetime->format('Y-m-d'))
             ->getQuery()
             ->getResult();
+    }
+
+    public function getByAges() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        SELECT COUNT(*)
+                FROM user
+                WHERE FLOOR(datediff(now(), user.birthday )) > (18*365.25)
+                UNION
+                SELECT COUNT(*)
+                FROM user
+                WHERE FLOOR(datediff(now(), user.birthday )) >= (18*365.25) AND FLOOR(datediff(now(), user.birthday )) <= (25*365.25)
+                UNION
+                SELECT COUNT(*)
+                FROM user
+                WHERE FLOOR(datediff(now(), user.birthday )) >= (26*365.25) AND FLOOR(datediff(now(), user.birthday )) <= (35*365.25)
+                UNION
+                SELECT COUNT(*)
+                FROM user
+                WHERE FLOOR(datediff(now(), user.birthday )) >= (36*365.25) AND FLOOR(datediff(now(), user.birthday )) <= (50*365.25)
+                UNION
+                SELECT COUNT(*)
+                FROM user
+                WHERE FLOOR(datediff(now(), user.birthday )) > (50*365.25)
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
     }
 }
