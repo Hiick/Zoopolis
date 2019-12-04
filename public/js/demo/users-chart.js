@@ -1,7 +1,8 @@
 function renderChart(data) {
     var ctx = document.getElementById("myPieChart");
+
     var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: ["> 18 ans", "18-25 ans", "26-35 ans", "36-50 ans", "> 50 ans"],
             datasets: [{
@@ -26,7 +27,28 @@ function renderChart(data) {
             legend: {
                 display: false
             },
-            cutoutPercentage: 80
+            cutoutPercentage: 50
+        }
+
+    });
+
+    Chart.pluginService.register({
+        beforeDraw: function(chart) {
+            var width = chart.chart.width,
+                height = chart.chart.height,
+                ctx = chart.chart.ctx;
+
+            ctx.restore();
+            var fontSize = (height / 114).toFixed(2);
+            ctx.font = fontSize + "em sans-serif";
+            ctx.textBaseline = "middle";
+
+            var text = "Âges",
+                textX = Math.round((width - ctx.measureText(text).width) / 2),
+                textY = height / 2;
+
+            ctx.fillText(text, textX, textY);
+            ctx.save();
         }
     });
 
