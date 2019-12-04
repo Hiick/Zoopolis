@@ -81,4 +81,23 @@ class UsersRepository extends ServiceEntityRepository
         $stmt->execute(array('Values'));
         return $stmt->fetchAll();
     }
+
+    public function getByEmail() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        select
+        substring(email,LOCATE("@",email)+1,LENGTH(email)) as domaine,
+        count(*) as nb_domaine
+        from user
+        where createdat <NOW()
+        group by domaine
+        order by nb_domaine DESC
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
 }

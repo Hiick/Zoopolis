@@ -52,6 +52,11 @@ getByAges:
     methods: GET
     controller: App\Controller\UsersController::getByAges
 
+getByEmail:
+    path: /users/emails
+    methods: GET
+    controller: App\Controller\DashboardController::getByEmail
+
 logout:
     path: /logout
 
