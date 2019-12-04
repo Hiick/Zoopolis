@@ -50,4 +50,17 @@ class UsersController extends BaseController {
         ]);
     }
 
+    public function getByAges(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->getByAges();
+
+        $list_final = [];
+
+        for ($i = 0; $i < count($listUsers); $i++) {
+            array_push($list_final, $listUsers[$i]["COUNT(*)"]);
+        }
+
+        return $this->responseApi($list_final);
+    }
+
 }
