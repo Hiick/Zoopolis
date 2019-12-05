@@ -22,6 +22,16 @@ users:
     methods: GET
     controller: App\Controller\UsersController::start
 
+billings:
+    path: /admin/billings
+    methods: GET
+    controller: App\Controller\BillingController::start
+
+pets:
+    path: /admin/pets
+    methods: GET
+    controller: App\Controller\PetsController::start
+
 getMens:
     path: /users/men
     methods: GET
@@ -47,6 +57,11 @@ getSumUsersSub:
     methods: GET
     controller: App\Controller\BillingController::getSumUsersSub
 
+getSubByActiveUser:
+    path: /users/sub/active
+    methods: GET
+    controller: App\Controller\BillingController::getSubByActiveUser
+
 getByAges:
     path: /users/ages
     methods: GET
@@ -67,6 +82,16 @@ getCountListUsers:
     methods: GET
     controller: App\Controller\UsersController::countListUsers
 
+getListPets:
+    path: /pets/list
+    methods: POST
+    controller: App\Controller\PetsController::listPets
+
+getCountListPets:
+    path: /pets/countlist
+    methods: GET
+    controller: App\Controller\PetsController::countListPets
+
 getId:
     path: /user/id
     methods: GET
@@ -76,6 +101,16 @@ deleteUser:
     path: /user/delete
     methods: post
     controller: App\Controller\UsersController::deleteUser
+
+subByDayWeekMonth:
+    path: /users/inscrits
+    methods: GET
+    controller: App\Controller\DashboardController::subByDayWeekMonth
+
+getAmountMonthYear:
+    path: /sub/amount
+    methods: GET
+    controller: App\Controller\BillingController::getAmountMonthYear
 
 logout:
     path: /logout

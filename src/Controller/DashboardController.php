@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends BaseController {
 
     /**
-     * @Route("/admin/dashboard", name="dashboard")
+     * @Route("/admin/dashboard", name="stats")
      */
     public function start(): Response {
         return $this->render('Dashboard/base.html.twig');
@@ -33,6 +33,15 @@ class DashboardController extends BaseController {
         return $this->responseApi([
             "Labels" => $listDomain,
             "Datas" => $listDatas
+        ]);
+    }
+
+    public function subByDayWeekMonth(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(User::class)->subByDayWeekMonth();
+
+        return $this->responseApi([
+            "Inscrits" => $listUsers
         ]);
     }
 

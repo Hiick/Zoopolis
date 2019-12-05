@@ -19,5 +19,30 @@ class PetsRepository extends ServiceEntityRepository
         parent::__construct($registry, Pet::class);
     }
 
+    public function countListPets($nb = 10) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = 'SELECT ROUND(COUNT(*)/'.$nb.') as pagination FROM pet';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function listPets($start, $end) {
+    $entityManager = $this->getEntityManager();
+    $conn = $entityManager->getConnection();
+
+    $sql = '
+        SELECT *
+        FROM pet
+        ORDER BY pet.idpet ASC
+        LIMIT '.$start.', '.$end;
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 }

@@ -150,4 +150,27 @@ class UsersRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function subByDayWeekMonth() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        SELECT COUNT(*) as Inscrits
+        FROM user 
+        WHERE createdAt > CURRENT_DATE AND createdAt < CURRENT_DATE + INTERVAL 1 DAY
+        UNION
+        SELECT COUNT(*) 
+        FROM user 
+        WHERE createdAt > CURRENT_DATE AND createdAt < CURRENT_DATE + INTERVAL 7 DAY
+        UNION
+        SELECT COUNT(*)  
+        FROM user 
+        WHERE createdAt > CURRENT_DATE AND createdAt < CURRENT_DATE + INTERVAL 1 MONTH
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
