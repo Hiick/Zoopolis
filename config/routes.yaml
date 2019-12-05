@@ -117,9 +117,6 @@ getAmountMonthYear:
     methods: GET
     controller: App\Controller\BillingController::getAmountMonthYear
 
-logout:
-    path: /logout
-
 getMensPet:
     path: /pets/men
     methods: GET
@@ -134,4 +131,13 @@ getAllPets:
     path: /pets/all
     methods: GET
     controller: App\Controller\PetsController::getAllPets
+
+getPetPerCountry:
+    path: /pets/country
+    methods: GET
+    controller: App\Controller\PetsController::getPetPerCountry
+
+ 
+logout:
+    path: /logout   
 

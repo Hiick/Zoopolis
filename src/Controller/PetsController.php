@@ -62,8 +62,20 @@ class PetsController extends BaseController {
         return $this->responseApi([
             $listUsers[0][1],
         ]);
-    }
 
+    }
+    public function getPetPerCountry(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(Pet::class)->getPetPerCountry();
+
+        $list_final = [];
+
+        for ($i = 0; $i < count($listUsers); $i++) {
+            array_push($list_final, $listUsers[$i]["COUNT(*)"]);
+        }
+
+        return $this->responseApi($list_final);
+    }
     
 
 
