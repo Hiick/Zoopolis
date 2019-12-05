@@ -18,6 +18,10 @@ class UsersController extends BaseController {
         return $this->render('Dashboard/Users/base.html.twig');
     }
 
+    public function addUserForm(): Response {
+        return $this->render('Dashboard/Add-user/base.html.twig');
+    }
+
     public function getMens(EntityManagerInterface $entityManager): Response {
         $entityManager = $this->getDoctrine()->getManager('customer');
         $listUsers = $entityManager->getRepository(User::class)->getBySexe('Homme');

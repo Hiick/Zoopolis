@@ -32,6 +32,11 @@ pets:
     methods: GET
     controller: App\Controller\PetsController::start
 
+addUser:
+    path: /admin/user/form
+    methods: GET
+    controller: App\Controller\UsersController::addUserForm
+
 getMens:
     path: /users/men
     methods: GET
