@@ -115,3 +115,18 @@ getAmountMonthYear:
 logout:
     path: /logout
 
+getMensPet:
+    path: /pets/men
+    methods: GET
+    controller: App\Controller\PetsController::getMensPet
+
+getWomensPet:
+    path: /pets/women
+    methods: GET
+    controller: App\Controller\PetsController::getWomensPet
+
+getAllPets:
+    path: /pets/all
+    methods: GET
+    controller: App\Controller\PetsController::getAllPets
+
