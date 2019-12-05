@@ -35,16 +35,15 @@ function barChart(month, year) {
             labels: ["Novembre", "Année 2019"],
             datasets: [{
                 label: "Montant payé ",
-                lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                borderColor: "rgba(78, 115, 223, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
+                backgroundColor: "rgba(135, 115, 223, 0.05)",
+                borderColor: "rgba(128, 132, 171)",
+                pointRadius: 10,
+                pointBackgroundColor: "rgba(135, 115, 223, 1)",
+                pointBorderColor: "rgba(128, 132, 171)",
+                pointHoverRadius: 10,
+                pointHoverBackgroundColor: "rgba(135, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(128, 132, 171)",
+                pointHitRadius: 30,
                 pointBorderWidth: 2,
                 data: [month, year]
             }]
@@ -80,13 +79,6 @@ function barChart(month, year) {
                         callback: function (value, index, values) {
                             return '' + number_format(value);
                         }
-                    },
-                    gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
                     }
                 }],
             },
@@ -94,10 +86,7 @@ function barChart(month, year) {
                 display: false
             },
             tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
                 titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
                 titleFontSize: 14,
                 borderColor: '#dddfeb',
                 borderWidth: 1,
