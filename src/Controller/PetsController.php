@@ -39,4 +39,37 @@ class PetsController extends BaseController {
         return $this->responseApi($listUsers);
     }
 
+
+
+    public function getMensPet(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(Pet::class)->getBySexePet('Homme');
+        return $this->responseApi([
+            $listUsers[0][1],
+        ]);
+    }
+
+    public function getWomensPet(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(Pet::class)->getBySexePet('Femme');
+        return $this->responseApi([
+            $listUsers[0][1],
+        ]);
+    }
+    public function getAllPets(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(Pet::class)->getAllPets();
+        return $this->responseApi([
+            $listUsers[0][1],
+        ]);
+    }
+
+    
+
+
+
+
+    
+
+
 }

@@ -45,4 +45,25 @@ class PetsRepository extends ServiceEntityRepository
     return $stmt->fetchAll();
 }
 
+
+    public function getBySexePet($sexe)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->where("p.sexe = :sexe")
+            ->setParameter('sexe', $sexe)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllPets()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 }
