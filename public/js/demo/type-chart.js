@@ -100,6 +100,7 @@ function raceChart(data) {
             tooltips: {
                 backgroundColor: "rgb(255,255,255)",
                 bodyFontColor: "#858796",
+                titleFontColor: 'black',
                 borderColor: '#dddfeb',
                 borderWidth: 1,
                 xPadding: 15,
