@@ -83,10 +83,10 @@ class PetsRepository extends ServiceEntityRepository
         $conn = $entityManager->getConnection();
 
         $sql = '
-        SELECT COUNT(*), user.country
+        SELECT COUNT(*), user.city
         FROM pet
         INNER JOIN user ON iduser = user_iduser 
-        GROUP BY user.country
+        GROUP BY user.city
         ';
 
         $stmt = $conn->prepare($sql);
