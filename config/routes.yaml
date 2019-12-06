@@ -22,6 +22,11 @@ users:
     methods: GET
     controller: App\Controller\UsersController::start
 
+tokens:
+    path: /admin/tokens
+    methods: GET
+    controller: App\Controller\TokensController::start
+
 billings:
     path: /admin/billings
     methods: GET
@@ -161,6 +166,11 @@ getByRaces:
     path: /pets/races
     methods: GET
     controller: App\Controller\PetsController::getByRaces
+
+connectionsByDays:
+    path: /tokens/connections
+    methods: POST
+    controller: App\Controller\TokensController::connectionsByDays
 
  
 logout:

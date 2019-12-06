@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'Dashboard/Tokens/head.html.twig' %}
+<body id="page-top">
+<div>
+    <div id="wrapper">
+        {% include 'Dashboard/sidebar.html.twig' %}
+        <div id="content">
+            {% include 'Dashboard/navigation.html.twig' %}
+
+            <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters text-center">
+                            <div class="col mr-2">
+                                <div class="mb-4">
+                                    <div style="color: #8b8ac2" class="text-xs font-weight-bold text-uppercase mb-1">Nombre de connexions par jour</div>
+                                    <input class="form-control birthday" type="date">
+                                </div>
+                                <div id="connexions" class="h5 text-center mb-0 font-weight-bold text-gray-800"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% include 'Dashboard/Tokens/script.html.twig' %}
+</html>
