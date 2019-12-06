@@ -37,10 +37,20 @@ addUser:
     methods: GET
     controller: App\Controller\UsersController::addUserForm
 
+addPet:
+    path: /admin/pet/form
+    methods: GET
+    controller: App\Controller\PetsController::addPetForm
+
 newUser:
     path: /user/new
     methods: POST
     controller: App\Controller\UsersController::newUser
+
+newPet:
+    path: /pet/new
+    methods: POST
+    controller: App\Controller\PetsController::newPet
 
 getMens:
     path: /users/men

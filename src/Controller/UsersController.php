@@ -113,7 +113,7 @@ class UsersController extends BaseController {
             $user->setLastname($params['lastname']);
             $user->setEmail($params['email']);
             $user->setSexe($params['sexe']);
-            $user->setBirthday('2019-05-05');
+            $user->setBirthday($params['birthday']);
             $user->setCity($params['city']);
             $user->setZip($params['zip']);
             $user->setStreet($params['address']);

@@ -71,6 +71,33 @@
                 $('#pets').html(mytable)
             })
 
-        })
+        });
+        $.ajax({
+                url : '/pets/men',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                $('#mensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
+            }
+         });
+        $.ajax({
+                url : '/pets/women',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                $('#womensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
+            }
+         });
+          $.ajax({
+                url : '/pets/all',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                $('#AllPet').html(new Intl.NumberFormat().format(parseFloat(data)))
+            }
+         });
+        $('#new-pet').click(function() {
+            window.location.href = '/admin/pet/form'
+        });
     });
 </script>
