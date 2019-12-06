@@ -188,4 +188,19 @@ class UsersRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function listUsersDesc($start, $end) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        SELECT *
+        FROM user
+        ORDER BY iduser DESC
+        LIMIT '.$start.', '.$end;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

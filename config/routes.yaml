@@ -97,6 +97,11 @@ getListUsers:
     methods: POST
     controller: App\Controller\UsersController::listUsers
 
+listUsersDesc:
+    path: /users/list/desc
+    methods: POST
+    controller: App\Controller\UsersController::listUsersDesc
+
 getCountListUsers:
     path: /users/countlist
     methods: GET
@@ -106,6 +111,11 @@ getListPets:
     path: /pets/list
     methods: POST
     controller: App\Controller\PetsController::listPets
+
+listPetsDesc:
+    path: /pets/list/desc
+    methods: POST
+    controller: App\Controller\PetsController::listPetsDesc
 
 getCountListPets:
     path: /pets/countlist

@@ -45,6 +45,21 @@ class PetsRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
+    public function listPetsDesc($start, $end) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+            SELECT *
+            FROM pet
+            ORDER BY pet.idpet DESC
+            LIMIT '.$start.', '.$end;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function getBySexePet($sexe)
     {
         return $this->createQueryBuilder('p')
