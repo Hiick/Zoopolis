@@ -67,6 +67,7 @@ class PetsController extends BaseController {
         ]);
 
     }
+
     public function getPetPerCountry(EntityManagerInterface $entityManager): Response {
         $entityManager = $this->getDoctrine()->getManager('customer');
         $listUsers = $entityManager->getRepository(Pet::class)->getPetPerCountry();
@@ -75,6 +76,32 @@ class PetsController extends BaseController {
 
         for ($i = 0; $i < count($listUsers); $i++) {
             array_push($list_final, $listUsers[$i]["COUNT(*)"]);
+        }
+
+        return $this->responseApi($list_final);
+    }
+
+    public function getByTypes(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listPets = $entityManager->getRepository(Pet::class)->getByTypes();
+
+        $list_final = [];
+
+        for ($i = 0; $i < count($listPets); $i++) {
+            array_push($list_final, $listPets[$i]["Types"]);
+        }
+
+        return $this->responseApi($list_final);
+    }
+
+    public function getByRaces(EntityManagerInterface $entityManager): Response {
+        $entityManager = $this->getDoctrine()->getManager('customer');
+        $listUsers = $entityManager->getRepository(Pet::class)->getByRaces();
+
+        $list_final = [];
+
+        for ($i = 0; $i < count($listUsers); $i++) {
+            array_push($list_final, $listUsers[$i]["Races"]);
         }
 
         return $this->responseApi($list_final);

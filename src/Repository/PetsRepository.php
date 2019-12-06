@@ -94,33 +94,29 @@ class PetsRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
-    public function getBySexePet($sexe)
-    {
-        return $this->createQueryBuilder('p')
-            ->select('COUNT(p)')
-            ->where("p.sexe = :sexe")
-            ->setParameter('sexe', $sexe)
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function getAllPets()
-    {
-        return $this->createQueryBuilder('p')
-            ->select('COUNT(p)')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function getPetPerCountry() {
+    public function getByTypes() {
         $entityManager = $this->getEntityManager();
         $conn = $entityManager->getConnection();
 
         $sql = '
-        SELECT COUNT(*), user.country
-        FROM pet
-        INNER JOIN user ON iduser = user_iduser 
-        GROUP BY user.country
+            SELECT COUNT(*) as Types
+            FROM pet
+            GROUP BY pet.type
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
+
+    public function getByRaces() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+            SELECT COUNT(*) as Races
+            FROM pet
+            GROUP BY pet.race
         ';
 
         $stmt = $conn->prepare($sql);

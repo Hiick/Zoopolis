@@ -6,6 +6,7 @@
 <script src="../../js/sb-admin-2.js"></script>
 <script src="../vendor/chart.js/Chart.min.js"></script>
 <script src="../js/demo/old-chart.js"></script>
+<script src="../js/demo/type-chart.js"></script>
 
 
 <script>
@@ -82,14 +83,6 @@
                 $('#mensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
             }
          });
-        $.ajax({
-                url : '/pets/women',
-                type: 'GET',
-                async: true,
-                success: function (data) {
-                $('#womensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
-            }
-         });
           $.ajax({
                 url : '/pets/all',
                 type: 'GET',
@@ -101,5 +94,30 @@
         $('#new-pet').click(function() {
             window.location.href = '/admin/pet/form'
         });
+    });
+    $('#male-female').change(function(){
+        if ($(this).val() === "Mâles"){
+            $.ajax({
+                url : '/pets/men',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    $('#mensPet').css("display", "block");
+                    $('#womensPet').css("display", "none");
+                    $('#mensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
+                }
+            });
+        } else {
+            $.ajax({
+                url : '/pets/women',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    $('#mensPet').css("display", "none");
+                    $('#womensPet').css("display", "block");
+                    $('#womensPet').html(new Intl.NumberFormat().format(parseFloat(data)))
+                }
+            });
+        }
     });
 </script>

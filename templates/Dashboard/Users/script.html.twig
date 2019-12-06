@@ -18,14 +18,6 @@
             }
         });
         $.ajax({
-            url : '/users/women',
-            type: 'GET',
-            async: true,
-            success: function (data) {
-                $('#womens').html(new Intl.NumberFormat().format(parseFloat(data)))
-            }
-        });
-        $.ajax({
             url : '/users/active/all',
             type: 'GET',
             async: true,
@@ -101,5 +93,34 @@
     });
     $('#new-user').click(function() {
         window.location.href = '/admin/user/form'
+    });
+    $('#homme-femme').change(function() {
+        if ($(this).val() === "Hommes") {
+            $.ajax({
+                url : '/users/men',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    $('.fa-male').css("display", 'block');
+                    $('.fa-female').css("display", 'none');
+                    $('#mens').css('display', 'block');
+                    $('#womens').css('display', 'none');
+                    $('#mens').html(new Intl.NumberFormat().format(parseFloat(data)))
+                }
+            });
+        } else {
+            $.ajax({
+                url : '/users/women',
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    $('.fa-male').css("display", 'none');
+                    $('.fa-female').css("display", 'block');
+                    $('#mens').css('display', 'none');
+                    $('#womens').css('display', 'block');
+                    $('#womens').html(new Intl.NumberFormat().format(parseFloat(data)))
+                }
+            });
+        }
     });
 </script>

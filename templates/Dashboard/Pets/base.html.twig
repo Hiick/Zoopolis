@@ -18,41 +18,27 @@
                 <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nombre de mâle</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nombre d'animaux
+                                                <select id="male-female">
+                                                    <option>Mâles</option>
+                                                    <option>Femelles</option>
+                                                </select>
+                                            </div>
                                             <div id="mensPet" class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-male fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nombre de femelles</div>
                                             <div id="womensPet" class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-female fa-2x text-gray-300"></i>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -108,33 +94,87 @@
                 </div>
             </div>
 
-            <div class="col-xl-12 col-lg-5">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 text-center">
-                        <h6 style="color: #8b8ac2" class="m-0 font-weight-bold">Nombre animaux par pays</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie pt-4 pb-2">
-                            <canvas id="myPieChart"></canvas>
+            <div class="row">
+                <div class="col-xl-6 col-lg-5">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 text-center">
+                            <h6 style="color: #8b8ac2" class="m-0 font-weight-bold">Nombre d'animaux par pays</h6>
                         </div>
-                        <div class="mt-4 text-center small">
-                            <span class="mr-3">
-                              <i class="fas fa-circle text-primary"></i> Allemagne
-                            </span>
-                            <span class="mr-3">
-                              <i class="fas fa-circle text-success"></i> Angeterre
-                            </span>
-                            <span class="mr-3">
-                                <i class="fas fa-circle text-info"></i> Belgique 
-                            </span>
-                            <span class="mr-3">
-                                <i style="color: mediumpurple" class="fas fa-circle"></i> France
-                            </span>
-                            <span class="mr-3">
-                                <i style="color: mediumorchid" class="fas fa-circle"></i> Luxembourg
-                            </span>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="myPieChart"></canvas>
+                            </div>
+                            <div class="mt-4 text-center small">
+                                <span class="mr-3">
+                                  <i class="fas fa-circle text-primary"></i> Allemagne
+                                </span>
+                                <span class="mr-3">
+                                  <i class="fas fa-circle text-success"></i> Angeterre
+                                </span>
+                                <span class="mr-3">
+                                    <i class="fas fa-circle text-info"></i> Belgique
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: mediumpurple" class="fas fa-circle"></i> France
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: mediumorchid" class="fas fa-circle"></i> Luxembourg
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-5">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 style="color: #8b8ac2" class="m-0 number font-weight-bold">Nombre d'animaux par types</h6>
+                            <select id="type-race">
+                                <option>Type</option>
+                                <option>Race</option>
+                            </select>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="type-chart"></canvas>
+                                <canvas id="race-chart"></canvas>
+                            </div>
+                            <div class="mt-4 text-center small labels">
+                                <span class="mr-3">
+                                    <i style="color: #006278" class="fas fa-circle"></i> Canard
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #d7bec2" class="fas fa-circle"></i> Chat
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #e0ad6d" class="fas fa-circle"></i> Cheval
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #868d82" class="fas fa-circle"></i> Chèvre
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #be9da3" class="fas fa-circle"></i> Chien
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #bfa27f" class="fas fa-circle"></i> Cochon d'Inde
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #c8b399" class="fas fa-circle"></i> Furet
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #5a5757" class="fas fa-circle"></i> Lapin
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #e7b42a" class="fas fa-circle"></i> Mignon
+                                </span>
+                                <span class="mr-3">
+                                    <i style="color: #ad7a4c" class="fas fa-circle"></i> Vache
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,7 +196,7 @@
     <!-- End of Content Wrapper -->
 
 </div>
-<script src="../js/demo/old-chart.js"></script>
+
 </body>
 {% include 'Dashboard/Pets/script.html.twig' %}
 </html>
