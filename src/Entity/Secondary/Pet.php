@@ -43,9 +43,9 @@ class Pet
     private $race;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="birthday", type="date", nullable=false)
+     * @ORM\Column(name="birthday", type="string", nullable=false)
      */
     private $birthday;
 
@@ -57,9 +57,9 @@ class Pet
     private $sexe = 'Homme';
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="dateAcquisition", type="date", nullable=false)
+     * @ORM\Column(name="dateAcquisition", type="string", nullable=false)
      */
     private $dateacquisition;
 
@@ -128,12 +128,12 @@ class Pet
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getBirthday(): ?string
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(string $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -152,12 +152,12 @@ class Pet
         return $this;
     }
 
-    public function getDateacquisition(): ?\DateTimeInterface
+    public function getDateacquisition(): ?string
     {
         return $this->dateacquisition;
     }
 
-    public function setDateacquisition(\DateTimeInterface $dateacquisition): self
+    public function setDateacquisition(string $dateacquisition): self
     {
         $this->dateacquisition = $dateacquisition;
 

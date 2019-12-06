@@ -73,9 +73,7 @@
                 mytable += "</tr></tbody></table>";
                 $('#pets').html(mytable)
             })
-
-        })
-
+        });
         $.ajax({
                 url : '/pets/men',
                 type: 'GET',
@@ -100,7 +98,8 @@
                 $('#AllPet').html(new Intl.NumberFormat().format(parseFloat(data)))
             }
          });
-        
-        
+        $('#new-pet').click(function() {
+            window.location.href = '/admin/pet/form'
+        });
     });
 </script>

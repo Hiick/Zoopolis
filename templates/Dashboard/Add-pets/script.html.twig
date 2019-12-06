@@ -1,0 +1,40 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../vendor/jquery/jquery.min.js"></script>
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="../../js/sb-admin-2.min.js"></script>
+
+<script>
+    $('#newPet').click(function(e){
+        $.ajax({
+            url : '/pet/new',
+            type: 'POST',
+            data: JSON.stringify({
+                "name": $('.name').val(),
+                "type": $('.type').val(),
+                "race": $('.race').val(),
+                "birthday": $('.birthday').val(),
+                "sexe": $('.sexe').val(),
+                "dateacquisition": $('.dateacquisition').val(),
+                "useriduser": $('.useriduser').val()
+            }),
+            async: true,
+            success: function () {
+                $('.pet-after').html('Animal ajouté avec succès !');
+                $('.pet-after').css("color", "green");
+                $('.form-wrap').css("display", "none");
+                setTimeout(function(){
+                    window.location.href = "/admin/pets"
+                }, 2000);
+            },
+            error: function (error) {
+                $('.pet-after').html('L\'animal existe déjà !');
+                $('.pet-after').css("color", "red");
+            }
+        });
+    });
+</script>
