@@ -46,7 +46,7 @@ function renderChart(data) {
     var myPieChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Allemagne", "Angeterre", "Belgique", "France", "Luxembourg"],
+            labels: ["Allemagne", "Angleterre", "Belgique", "France", "Luxembourg"],
             datasets: [{
                 data: data,
                 backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', 'mediumpurple', 'mediumorchid'],
@@ -58,6 +58,7 @@ function renderChart(data) {
             maintainAspectRatio: false,
             tooltips: {
                 backgroundColor: "rgb(255,255,255)",
+                titleFontColor: 'black',
                 bodyFontColor: "#858796",
                 borderColor: '#dddfeb',
                 borderWidth: 1,
