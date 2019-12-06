@@ -64,6 +64,28 @@ class PetsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getPetPerCountry() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        SELECT COUNT(*), user.country
+        FROM pet
+        INNER JOIN user ON iduser = user_iduser 
+        GROUP BY user.country
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
+
+
+
+
+
+    
+
 
 
 }
