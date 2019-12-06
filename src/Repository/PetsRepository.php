@@ -93,4 +93,34 @@ class PetsRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getByTypes() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+            SELECT COUNT(*) as Types
+            FROM pet
+            GROUP BY pet.type
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
+
+    public function getByRaces() {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+            SELECT COUNT(*) as Races
+            FROM pet
+            GROUP BY pet.race
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('Values'));
+        return $stmt->fetchAll();
+    }
 }

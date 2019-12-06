@@ -152,6 +152,16 @@ getPetPerCountry:
     methods: GET
     controller: App\Controller\PetsController::getPetPerCountry
 
+getByTypes:
+    path: /pets/types
+    methods: GET
+    controller: App\Controller\PetsController::getByTypes
+
+getByRaces:
+    path: /pets/races
+    methods: GET
+    controller: App\Controller\PetsController::getByRaces
+
  
 logout:
     path: /logout   
