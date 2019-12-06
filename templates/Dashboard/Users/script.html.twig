@@ -123,4 +123,131 @@
             });
         }
     });
+    $('#asc-desc').change(function() {
+       if ($(this).val() === "ASC") {
+           $(".list-users").html('Attendez...');
+           $('#usersdesc').css("display", "none");
+           $('#users').css("display", "block");
+           $.ajax({
+               url : '/users/list',
+               type: 'POST',
+               dataType: "json",
+               data: JSON.stringify({
+                   "page": "1"
+               }),
+               async: true
+           }).then(function (value) {
+               var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td class='destroy'><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
+               for(let i = 0; i < value.length; i++){
+                   mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td class='destroy'>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td class='destroy'><i style=\"color: red; cursor: pointer\" class=\"fas fa-ban\"></td></tr>";
+               }
+               mytable += "</tr></tbody></table>";
+               $('#users').html(mytable)
+               $(".list-users").html('Liste des utilisateurs croissant');
+           })
+           $(".pagination_button").click(function () {
+               let nb_page = parseInt($(this).text().trim());
+
+               if (nb_page <= 1) {
+                   $(".pagination_button").eq(0).text(1);
+                   $(".pagination_button").eq(1).text(2);
+                   $(".pagination_button").eq(2).text(3);
+                   $(".pagination_button").eq(3).text(nb_page+3);
+                   $(".pagination_button").eq(4).text(nb_page+4);
+               }  else if (nb_page <= 2) {
+                   $(".pagination_button").eq(0).text(1);
+                   $(".pagination_button").eq(1).text(2);
+                   $(".pagination_button").eq(2).text(3);
+                   $(".pagination_button").eq(3).text(nb_page+2);
+                   $(".pagination_button").eq(4).text(nb_page+3);
+               } else {
+                   $(".pagination_button").eq(0).text(nb_page-2);
+                   $(".pagination_button").eq(1).text(nb_page-1);
+                   $(".pagination_button").eq(2).text(nb_page);
+                   $(".pagination_button").eq(3).text(nb_page+1);
+                   $(".pagination_button").eq(4).text(nb_page+2);
+               }
+
+               $.ajax({
+                   url : '/users/list',
+                   type: 'POST',
+                   dataType: "json",
+                   data: JSON.stringify({
+                       "page": nb_page
+                   }),
+                   async: true
+               }).then(function (value) {
+                   var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
+                   for(let i = 0; i < value.length; i++){
+                       mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><i style=\"color: red;\" class=\"fas fa-ban\"></td></tr>";
+                   }
+                   mytable += "</tr></tbody></table>";
+                   $('#users').html(mytable)
+               })
+           })
+       } else {
+           $(".list-users").html('Attendez...');
+           $('#users').css("display", "none");
+           $('#usersdesc').css("display", "block");
+           $.ajax({
+               url : '/users/list/desc',
+               type: 'POST',
+               dataType: "json",
+               data: JSON.stringify({
+                   "page": "1"
+               }),
+               async: true
+           }).then(function (value) {
+               var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td class='destroy'><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
+               for(let i = 0; i < value.length; i++){
+                   let string = value[i].email;
+                   mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td class='truncate'>" + string.substring(0, 15) + "..." + "</td><td>" + value[i].street + "</td><td class='destroy'>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td class='destroy'><i style=\"color: red; cursor: pointer\" class=\"fas fa-ban\"></td></tr>";
+               }
+               mytable += "</tr></tbody></table>";
+               $('#usersdesc').html(mytable);
+               $(".list-users").html('Liste des utilisateurs décroissant');
+           })
+           $(".pagination_button").click(function () {
+               let nb_page = parseInt($(this).text().trim());
+
+               if (nb_page <= 1) {
+                   $(".pagination_button").eq(0).text(1);
+                   $(".pagination_button").eq(1).text(2);
+                   $(".pagination_button").eq(2).text(3);
+                   $(".pagination_button").eq(3).text(nb_page+3);
+                   $(".pagination_button").eq(4).text(nb_page+4);
+               }  else if (nb_page <= 2) {
+                   $(".pagination_button").eq(0).text(1);
+                   $(".pagination_button").eq(1).text(2);
+                   $(".pagination_button").eq(2).text(3);
+                   $(".pagination_button").eq(3).text(nb_page+2);
+                   $(".pagination_button").eq(4).text(nb_page+3);
+               } else {
+                   $(".pagination_button").eq(0).text(nb_page-2);
+                   $(".pagination_button").eq(1).text(nb_page-1);
+                   $(".pagination_button").eq(2).text(nb_page);
+                   $(".pagination_button").eq(3).text(nb_page+1);
+                   $(".pagination_button").eq(4).text(nb_page+2);
+               }
+
+               $.ajax({
+                   url : '/users/list/desc',
+                   type: 'POST',
+                   dataType: "json",
+                   data: JSON.stringify({
+                       "page": nb_page
+                   }),
+                   async: true
+               }).then(function (value) {
+                   var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
+                   for(let i = 0; i < value.length; i++){
+                       let string = value[i].email;
+                       mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + string.substring(0, 25) + "..." + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><i style=\"color: red;\" class=\"fas fa-ban\"></td></tr>";
+                   }
+                   mytable += "</tr></tbody></table>";
+                   $('#usersdesc').html(mytable)
+               })
+           })
+       }
+    });
 </script>
