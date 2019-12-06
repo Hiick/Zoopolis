@@ -52,7 +52,7 @@
         }).then(function (value) {
             var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
             for(let i = 0; i < value.length; i++){
-                mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><i style=\"color: red;\" class=\"fas fa-ban\"></td></tr>";
+                mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><button id='delete-user'><i style=\"color: red; cursor: pointer\" class=\"fas fa-ban\"></button></td></tr>";
             }
             mytable += "</tr></tbody></table>";
             $('#users').html(mytable)
@@ -91,7 +91,7 @@
             }).then(function (value) {
                 var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr><td><b>Firstname</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Street</b></td><td><b>Zip</b></td><td><b>City</b></td><td><b>Country</b></td><td><b>Birthday</b></td><td><b>Sexe</b></td><td><b>Active</b></td></tr><tr>";
                 for(let i = 0; i < value.length; i++){
-                    mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><i style=\"color: red;\" class=\"fas fa-ban\"></td></tr>";
+                    mytable += "<tr><td>" + value[i].firstname + "</td><td>" + value[i].lastname + "</td><td>" + value[i].email + "</td><td>" + value[i].street + "</td><td>" + value[i].zip + "</td><td>" + value[i].city + "</td><td>" + value[i].country + "</td><td>" + value[i].birthday + "</td><td>" + value[i].sexe + "</td><td>" + value[i].active + "</td><td><button id='destroy'><i style=\"color: red;\" class=\"fas fa-ban\"></button></td></tr>";
                 }
                 mytable += "</tr></tbody></table>";
                 $('#users').html(mytable)

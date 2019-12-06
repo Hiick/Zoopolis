@@ -173,4 +173,19 @@ class UsersRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function newUser($firstname, $lastname, $email, $password, $street, $zip, $city, $birthday, $sexe) {
+        $entityManager = $this->getEntityManager();
+        $conn = $entityManager->getConnection();
+
+        $sql = '
+        INSERT INTO user 
+        (user.firstname, user.lastname, user.email, user.password, user.street, user.zip, user.city, user.birthday, user.sexe) 
+        VALUES ('.$firstname.','.$lastname.', '.$email.','.$password.','.$street.','.$zip.','.$city.','.$birthday.','.$sexe.')
+        ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

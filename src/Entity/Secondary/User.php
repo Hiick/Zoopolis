@@ -3,6 +3,7 @@
 namespace App\Entity\Secondary;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -78,9 +79,9 @@ class User
     private $country = 'France';
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="birthday", type="date", nullable=false)
+     * @ORM\Column(name="birthday", type="string", nullable=false)
      */
     private $birthday;
 
@@ -165,6 +166,11 @@ class User
         return $this;
     }
 
+    public function eraseCredentials() {}
+    public function getSalt() {}
+    public function getRoles() {}
+    public function getUsername() {}
+
     public function getStreet(): ?string
     {
         return $this->street;
@@ -213,12 +219,12 @@ class User
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getBirthday(): ?string
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(string $birthday): self
     {
         $this->birthday = $birthday;
 
