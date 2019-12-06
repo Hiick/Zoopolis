@@ -7,3 +7,36 @@
 
 <!-- Custom scripts for all pages-->
 <script src="../../js/sb-admin-2.min.js"></script>
+
+<script>
+    $('#newUser').click(function(e){
+        $.ajax({
+            url : '/user/new',
+            type: 'POST',
+            data: JSON.stringify({
+                "firstname": $('.firstname').val(),
+                "lastname": $('.lastname').val(),
+                "email": $('.email').val(),
+                "password": $('.password').val(),
+                "address": $('.address').val(),
+                "zip": $('.zip').val(),
+                "city": $('.city').val(),
+                "birthday": $('.birthday').val(),
+                "sexe": $('.sexe').val()
+            }),
+            async: true,
+            success: function () {
+                $('.user-after').html('Utilisateur ajouté avec succès !');
+                $('.user-after').css("color", "green");
+                $('.form-wrap').css("display", "none");
+                setTimeout(function(){
+                    window.location.href = "/admin/users"
+                }, 2000);
+            },
+            error: function (error) {
+                $('.user-after').html('L\'utilisateur existe déjà !');
+                $('.user-after').css("color", "red");
+            }
+        });
+    });
+</script>

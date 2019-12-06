@@ -8,6 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 class UsersController extends BaseController {
 
@@ -98,6 +100,36 @@ class UsersController extends BaseController {
         $entityManager = $this->getDoctrine()->getManager('customer');
         $listUsers = $entityManager->getRepository(User::class)->getId();
         return $this->responseApi($listUsers);
+    }
+
+    public function newUser(EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder, Request $request): Response {
+        $content = $request->getContent();
+
+        if (!empty($content)) {
+            $params = json_decode($content, true);
+
+            $user = new User();
+            $user->setFirstname($params['firstname']);
+            $user->setLastname($params['lastname']);
+            $user->setEmail($params['email']);
+            $user->setSexe($params['sexe']);
+            $user->setBirthday('2019-05-05');
+            $user->setCity($params['city']);
+            $user->setZip($params['zip']);
+            $user->setStreet($params['address']);
+            $hash = $encoder->encodePassword($user, $params['password']);
+            $user->setPassword($hash);
+            $user->setCreatedat(new \DateTime());
+            $user->setUpdetedat(new \DateTime());
+
+            $entityManager = $this->getDoctrine()->getManager('customer');
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+
+        return $this->responseApi([
+            "data" => json_decode($content, true)
+        ], 200);
     }
 
 }

@@ -3,6 +3,8 @@ security:
     encoders:
         App\Entity\Main\Admin:
             algorithm: bcrypt
+        App\Entity\Secondary\User:
+            algorithm: bcrypt
     providers:
         in_memory: { memory: null }
         in_database:
